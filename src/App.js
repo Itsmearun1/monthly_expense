@@ -4,6 +4,8 @@ import './App.css';
 function App() {
   // State to store the list of expenses
   const [expenses, setExpenses] = useState([]);
+  // State to track whether the total expenses should be shown
+  const [showTotal, setShowTotal] = useState(false);
 
   // Function to add a new expense
   const addExpense = (event) => {
@@ -58,7 +60,11 @@ function App() {
           ))}
         </tbody>
       </table>
-      <p>Total Expenses: {totalExpenses}</p>
+      <div className="total-expenses">
+        <input type="checkbox" checked={showTotal} onChange={() => setShowTotal(!showTotal)} />
+        <label>Show total expenses</label>
+        {showTotal && <p>Total Expenses: {totalExpenses}</p>}
+      </div>
     </div>
   );
 }
