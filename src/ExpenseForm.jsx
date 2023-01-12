@@ -10,14 +10,14 @@ function ExpenseForm({ onReduce }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="expForm">
       <label>
         Category:
         <select value={category} onChange={e => setCategory(e.target.value)}>
-          <option value="grocery">Grocery</option>
-          <option value="roomAndTravel">Room & Travel</option>
-          <option value="other">Other</option>
-          <option value="savings">Savings</option>
+          <option value="grocery" >Grocery</option>
+          <option value="roomAndTravel" >Room & Travel</option>
+          <option value="other" >Other</option>
+          <option value="savings" >Savings</option>
         </select>
       </label>
       <label>

@@ -40,7 +40,13 @@ function App() {
   }
 
   return (
+    <>
+    
     <div>
+      <div className='title'>
+      <h1>POCKET SAVER</h1>
+      </div>
+    
       <IncomeForm onSubmit={handleIncomeSubmit} />
       <ExpenseCategories
         grocery={grocery}
@@ -50,6 +56,7 @@ function App() {
       />
       <ExpenseForm onReduce={handleExpenseReduce} />
     </div>
+    </>
   );
 }
 
