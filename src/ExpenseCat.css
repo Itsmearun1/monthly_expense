@@ -1,0 +1,12 @@
+div {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  
+  div div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
