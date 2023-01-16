@@ -5,7 +5,7 @@ const IncomeForm = (props) => {
     <form onSubmit={props.handleIncomeSubmit}>
       <label>
         Income:
-        <input type="number" name="income" />
+        <input type="number" name="income" defaultValue={localStorage.getItem('income')}/>
       </label>
       <button>Submit</button>
     </form>

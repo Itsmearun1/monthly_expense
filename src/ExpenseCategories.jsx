@@ -22,3 +22,5 @@ const ExpenseCategories = (props) => {
 }
 
 export default ExpenseCategories
+
+
