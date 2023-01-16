@@ -1,63 +1,69 @@
-import React, { useState } from 'react';
-import IncomeForm from './IncomeForm';
-import ExpenseCategories from './ExpenseCategories';
-import ExpenseForm from './ExpenseForm';
-import './App.css';
-function App() {
-  const [grocery, setGrocery] = useState(0);
-  const [roomAndTravel, setRoomAndTravel] = useState(0);
-  const [other, setOther] = useState(0);
-  const [savings, setSavings] = useState(0);
-
-  const handleIncomeSubmit = (income) => {
-    const grocery = income * 0.25;
-    const roomAndTravel = income * 0.3;
-    const other = income * 0.2;
-    const savings = income * 0.25;
-    setGrocery(grocery);
-    setRoomAndTravel(roomAndTravel);
-    setOther(other);
-    setSavings(savings);
+import React, { Component } from 'react'
+import IncomeForm from './IncomeForm'
+import ExpenseCategories from './ExpenseCategories'
+import ExpenseForm from './ExpenseForm'
+import SpendingLog from './SpendingLog'
+import './App.css'
+class App extends Component {
+  state = {
+    income: 0,
+    grocery: 0,
+    roomAndTravel: 0,
+    other: 0,
+    savings: 0,
+    log: []
   }
 
-  const handleExpenseReduce = (category, amount) => {
-    switch (category) {
-      case 'grocery':
-        setGrocery(grocery - amount);
-        break;
-      case 'roomAndTravel':
-        setRoomAndTravel(roomAndTravel - amount);
-        break;
-      case 'other':
-        setOther(other - amount);
-        break;
-      case 'savings':
-        setSavings(savings - amount);
-        break;
-      default:
-        break;
-    }
+  handleIncomeSubmit = (event) => {
+    event.preventDefault()
+    this.setState({
+      income: event.target.income.value,
+      grocery: event.target.income.value * 0.25,
+      roomAndTravel: event.target.income.value * 0.3,
+      other: event.target.income.value * 0.2,
+      savings: event.target.income.value * 0.25
+    })
   }
 
-  return (
-    <>
-    
-    <div>
-      <div className='title'>
-      <h1>POCKET SAVER</h1>
+  handleExpenseSubmit = (event) => {
+    event.preventDefault()
+    const category = event.target.category.value
+    const amount = parseFloat(event.target.amount.value)
+
+    this.setState(prevState => {
+      return {
+        [category]: prevState[category] - amount
+      }
+    })
+    this.addToLog(category, amount)
+  }
+
+  addToLog = (category, amount) => {
+    this.setState(prevState => {
+      return {
+        log: [...prevState.log, { category, amount, id: Date.now() }]
+      }
+    })
+  }
+
+  render() {
+    return (
+      <div className="wrapper">
+      <div className="app-container">
+        <h1>Pocket Saver</h1>
+        <IncomeForm handleIncomeSubmit={this.handleIncomeSubmit} />
+        <ExpenseCategories
+          grocery={this.state.grocery}
+          roomAndTravel={this.state.roomAndTravel}
+          other={this.state.other}
+          savings={this.state.savings}
+        />
+        <ExpenseForm handleExpenseSubmit={this.handleExpenseSubmit} />
       </div>
-    
-      <IncomeForm onSubmit={handleIncomeSubmit} />
-      <ExpenseCategories
-        grocery={grocery}
-        roomAndTravel={roomAndTravel}
-        other={other}
-        savings={savings}
-      />
-      <ExpenseForm onReduce={handleExpenseReduce} />
-    </div>
-    </>
-  );
+      <SpendingLog log={this.state.log} />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App

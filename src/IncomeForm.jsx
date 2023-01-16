@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
-import './IncomeForm.css';
-function IncomeForm({ onSubmit }) {
-  const [income, setIncome] = useState(0);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(income);
-  }
-
+import React from 'react'
+import "./IncomeForm.css"
+const IncomeForm = (props) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={props.handleIncomeSubmit}>
       <label>
-        Monthly Income:
-        <input type="number" value={income} onChange={e => setIncome(e.target.value)} />
+        Income:
+        <input type="number" name="income" />
       </label>
-      <button type="submit">Submit</button>
+      <button>Submit</button>
     </form>
   )
 }
 
-export default IncomeForm;
+export default IncomeForm

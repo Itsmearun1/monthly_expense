@@ -1,18 +1,16 @@
-.app-container {
+
+.wrapper{
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #f5f5f5;
+  flex-direction: column;
+  border: 1px solid rebeccapurple;
+  width: 100%;
 }
 .title{
-  height: 75%;
+  height: 70%;
   width: 15%;
   display: flex;
   align-items: center;
   color: rgb(141, 42, 42);
-
 }
 h1 {
   text-align: center;
@@ -20,4 +18,5 @@ h1 {
   font-weight: bold;
   margin: 20px;
   display: inline;
+  color: brown;
 }
