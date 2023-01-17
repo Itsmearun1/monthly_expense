@@ -89,7 +89,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="app-container">
-          <h1>My Money Manager</h1>
+          <h1>Pocket Saver</h1>
           <IncomeForm handleIncomeSubmit={this.handleIncomeSubmit} />
           <ExpenseCategories
             grocery={this.state.grocery}
